@@ -11,6 +11,12 @@ div.controlPanel input[type=button]{
 	margin: 2px;
 }
 
+#restarted {
+	color:red;
+	display:none;
+	text-align: center;
+}
+
 div.controlPanel .error{
 	float: left;
 	margin: 2px;

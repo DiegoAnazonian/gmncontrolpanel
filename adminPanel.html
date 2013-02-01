@@ -84,7 +84,14 @@
 					$("#boardContainer").hide();
 					$("#loginContainer").show();				
 				});
-			})
+				$("#resetButton").click(function(){
+					board.reset();
+					$("#startButton").removeAttr("disabled");
+					$("#restarted").show(200);
+					setTimeout(function(){$("#restarted").hide(200)},1000)
+				});				
+			})			
+
 		</script>
 		<script id="board" type="text/x-handlebars-template">
 			<table>
@@ -154,10 +161,12 @@
 			<div class="error">ERROR ERROR ERROR ERROR</div>
 		</div>
 		<div id="boardContainer" style="display:none;">
+				<p id="restarted">Players Restarted</p>
 			<div class="controlPanel">
 				<input type="button" id="logoutButton" value="Logout">
 				<input type="button" id="stopButton" value="Stop">
 				<input type="button" id="startButton" value="Start">
+				<input type="button" id="resetButton" value="Reset">
 				<div class="error">ERROR ERROR ERROR ERROR</div>
 			</div>
 			<div class="boardTableContainer">
