@@ -19,7 +19,6 @@ GMN.Admin.Board = function(_options) {
 			}
 		})
 	}
-
 	var refreshBoard = function() {
 		getData(function(data,status){
 			console.log(status);
@@ -61,9 +60,23 @@ GMN.Admin.Board = function(_options) {
 		console.log("stoping");
 		clearTimeout(boardTimer);
 	}
-
+	var version = function() {
+		$.ajax({
+			"url":GMN.Server.Config.getServer()+":"+GMN.Server.Config.getPort()+"/version",
+			"complete": function(data){
+				var msg=JSON.parse(data.responseText);
+				if (data.status === 200){
+					$("#version").val("Version:" + msg.version);
+					console.log("Version " + msg.version);
+				}else{
+					$(".error").text("ERROR Get version Error");
+				}
+			}
+		})
+	}
 	return {
 		"start":start,
-		"stop":stop
+		"stop":stop,
+		"version":version
 	}
 }
