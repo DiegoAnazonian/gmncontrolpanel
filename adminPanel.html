@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="js/libs/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript" src="js/GMN/main.js"></script>
 		<script type="text/javascript" src="js/GMN/Server/Config.js"></script>
-		<script type="text/javascript" src="js/GMN/Server/Config.js"></script>
+		<script type="text/javascript" src="js/GMN/Server/Validate.js"></script>
 		<script type="text/javascript" src="js/GMN/Admin/Board.js"></script>
 		<script type="text/javascript">
 			Handlebars.registerHelper('lastAttemp', function(serverTime,attempTime) {
@@ -58,14 +58,31 @@
 				}
 
 				$("#loginButton").click(function(){
-					GMN.Server.Config.setServer($("#serverName").val());
-					GMN.Server.Config.setPort($("#serverPort").val());
-					GMN.Server.Config.setAdminPassword($("#adminPassword").val());
-					board.start(errorHandler);
-					$("#startButton").attr("disabled", "disabled");
-					$("#stopButton").removeAttr("disabled");
-					$("#loginContainer").hide();
-					$("#boardContainer").show();
+
+					if(valServ($("#serverName").val()) == "OK"){
+						if(valPort($("#serverPort").val()) == "OK"){
+							if(valPass($("#adminPassword").val()) == "OK"){
+
+								GMN.Server.Config.setServer($("#serverName").val());
+								GMN.Server.Config.setPort($("#serverPort").val());
+								GMN.Server.Config.setAdminPassword($("#adminPassword").val());
+								board.start(errorHandler);
+								$("#startButton").attr("disabled", "disabled");
+								$("#stopButton").removeAttr("disabled");
+								$("#loginContainer").hide();
+								$("#boardContainer").show();
+							
+							}else{
+								console.log(valPass($("#adminPassword").val()));
+							}
+
+						}else{
+							console.log(valPort($("#serverPort").val()));
+						}
+
+					}else{
+						console.log(valServ($("#serverName").val()));
+					}
 				});
 				$("#startButton").click(function(){
 					board.start(errorHandler);					
