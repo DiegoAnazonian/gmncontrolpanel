@@ -21,9 +21,9 @@ GMN.Admin.Board = function(_options) {
 	}
 	var refreshBoard = function() {
 		getData(function(data,status){
-			console.log(status);
+			//console.log(status);
 			if(status === 200) {
-				console.log(data);
+				//console.log(data);
 				$(".error").hide();
 				var source = $("#board").html();
 				var template = Handlebars.compile(source);
@@ -48,16 +48,24 @@ GMN.Admin.Board = function(_options) {
 			}
 		});
 	}
+	var reset = function(){
+		$.ajax({
+			url: GMN.Server.Config.getServer() +":"+ GMN.Server.Config.getPort() + "/admin/reset/1234"})
+			.statusCode({
+				200:function(){console.log("Players restarted")},
+				401:function(){console.log("Admin password is incorrect")}
+			})
+	}	
 
 	var start = function() {
 		started = true;
-		console.log("starting");
+		//console.log("starting");
 		boardTimer = setTimeout(refreshBoard, options.refreshBoardInterval);
 	}
 
 	var stop = function() {
 		started = false;
-		console.log("stoping");
+		//console.log("stoping");
 		clearTimeout(boardTimer);
 	}
 	var version = function() {
@@ -77,6 +85,9 @@ GMN.Admin.Board = function(_options) {
 	return {
 		"start":start,
 		"stop":stop,
+
 		"version":version
+		"reset":reset 
+
 	}
 }
