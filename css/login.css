@@ -6,7 +6,15 @@ div.login{
 	padding: 10px;
 	background-color: #EEEEEE;
 }
-
+#link{
+	margin-top: 10px;
+	margin-left: 100px;
+	float: right;
+}
+#link2{
+	margin-top: 10px;
+	float: left;
+}
 .login input{
 	float: right;
 	width: 300px;
