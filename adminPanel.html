@@ -65,13 +65,16 @@
 					$("#startButton").attr("disabled", "disabled");
 					$("#stopButton").removeAttr("disabled");
 					$("#loginContainer").hide();
-					$("#boardContainer").show();
+					$("#boardContainer").show();					
 				});
+
 				$("#startButton").click(function(){
 					board.start(errorHandler);					
 					$("#startButton").attr("disabled", "disabled");
 					$("#stopButton").removeAttr("disabled");
-				});
+					
+					})
+				
 				$("#stopButton").click(function(){
 					board.stop();					
 					$("#startButton").removeAttr("disabled");
@@ -89,9 +92,10 @@
 					$("#startButton").removeAttr("disabled");
 					$("#restarted").show(200);
 					setTimeout(function(){$("#restarted").hide(200)},1000)
-				});				
-			})			
+				});		
 
+						
+});
 		</script>
 		<script id="board" type="text/x-handlebars-template">
 			<table>
@@ -161,10 +165,11 @@
 			<div class="error">ERROR ERROR ERROR ERROR</div>
 			<div><br /><a href="http://guessmynumber.jurgens.com.ar/doc" id="link" >Documentaci&oacuten</a></div>
 		</div>
-		<div id="boardContainer" style="display:none;">
+		<div id="boardContainer" style="display:none;">				
 				<p id="restarted">Players Restarted</p>
+				RequestPerMinute: <span id="requestXminute"></span>
 				<div><a href="http://guessmynumber.jurgens.com.ar/doc" id="link2" >Documentaci&oacuten</a></div>
-			<div class="controlPanel">
+			<div class="controlPanel">				
 				<input type="button" id="logoutButton" value="Logout">
 				<input type="button" id="stopButton" value="Stop">
 				<input type="button" id="startButton" value="Start">

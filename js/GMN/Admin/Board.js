@@ -26,6 +26,7 @@ GMN.Admin.Board = function(_options) {
 			if(status === 200) {
 				//console.log(data);
 				$(".error").hide();
+				$("#requestXminute").html(((data.stats.total/1000)/60).toFixed(4));
 				var source = $("#board").html();
 				var template = Handlebars.compile(source);
 				for(var i = 0; i < data.players.length; i++) data.players[i].serverTime = data.stats.serverTime;
@@ -56,6 +57,7 @@ GMN.Admin.Board = function(_options) {
 				200:function(){console.log("Players restarted")},
 				401:function(){console.log("Admin password is incorrect")}
 			})
+		$("#requestXminute").html("");	
 	}	
 
 	var start = function() {
@@ -69,10 +71,11 @@ GMN.Admin.Board = function(_options) {
 		//console.log("stoping");
 		clearTimeout(boardTimer);
 	}
-
+	
 	return {
 		"start":start,
 		"stop":stop,
-		"reset":reset 
+		"reset":reset	
+
 	}
 }
