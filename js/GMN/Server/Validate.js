@@ -74,7 +74,7 @@ function esNum(_campo){ //Verifica si el char ingresado es un número o no
 
 function esAlfNumCxC(_cadena){ //idem esNumCxC pero llamando a esAlfNum
 	for(var i=0; i < _cadena.length; i++){
-		if(esAlfNum(_cadena.charAt(i)) != "OK") return(1);
+		if(esAlfNum(_cadena.charAt(i).toLowerCase()) != "OK") return(1);
 	}
 	return("OK");
 }
