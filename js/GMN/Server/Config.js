@@ -26,6 +26,12 @@ GMN.Server.Config = function(_options) {
 		},
 		"getAdminPassword":function() {
 			return options.AdminPassword;
+		},
+		"setVersion":function(Version){
+			options.version=Version;
+		},
+		"getVersion":function(){
+			return options.version;
 		}
 	}
 }();
